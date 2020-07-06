@@ -1,7 +1,7 @@
 // JavaScript source code
 // editor
-ZenPen = window.ZenPen || {};
-ZenPen.editor = (function () {
+PenFlow = window.PenFlow || {};
+PenFlow.editor = (function () {
 
 	// Editor elements
 	var headerField, contentField, lastType, currentNodeList, lastSelection;
@@ -19,7 +19,7 @@ ZenPen.editor = (function () {
 		createEventBindings();
 
 		// Load state if storage is supported
-		if (ZenPen.util.supportsHtmlStorage()) {
+		if (PenFlow.util.supportsHtmlStorage()) {
 			loadState();
 		} else {
 			loadDefault();
@@ -36,7 +36,7 @@ ZenPen.editor = (function () {
 	function createEventBindings() {
 
 		// Key up bindings
-		if (ZenPen.util.supportsHtmlStorage()) {
+		if (PenFlow.util.supportsHtmlStorage()) {
 
 			document.onkeyup = function (event) {
 				checkTextHighlighting(event);
@@ -352,7 +352,7 @@ ZenPen.editor = (function () {
 
 	function getWordCount() {
 
-		var text = ZenPen.util.getText(contentField);
+		var text = PenFlow.util.getText(contentField);
 
 		if (text === "") {
 			return 0

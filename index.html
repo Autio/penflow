@@ -2,7 +2,7 @@
 <html>
 <head>
     <!-- MISC/META -->
-    <title>ZenPen ~ Minimal Distraction, Maximum Zen</title>
+    <title>PenFlow - Minimalist Writing</title>
     <meta charset="utf-8" />
     <meta name="description"
           content="PenFlow - A minimal text editor" />
@@ -29,6 +29,7 @@
             <p class="saveselection">
                 <span data-format="markdown">Markdown</span>
                 <span data-format="html">HTML</span>
+                <span data-format="pdf">PDF</span>
                 <span data-format="plain">Plain Text</span>
             </p>
             <button class="savebutton useicons">&#xe006;</button>
@@ -74,13 +75,13 @@
                 </button>
             </div>
 
-            <div class="bottom">
+            <!-- <div class="bottom">
                 <a class="about"
-                   href="https://www.buymeacoffee.com/tholman"
+                   href="https://autio.github.io"
                    target="_blank">
                     ☕
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -104,9 +105,10 @@
     <script src="js/editor.js"></script>
     <script src="js/ui.js"></script>
     <script type="text/javascript">
-        // Initiate ZenPen
-        ZenPen.editor.init();
-        ZenPen.ui.init();
+        // Initiate PenFlow
+        PenFlow.ui.init();
+    
+        PenFlow.editor.init();
     </script>
    
 </body>

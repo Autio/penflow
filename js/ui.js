@@ -1,6 +1,6 @@
-// ui functions
-ZenPen = window.ZenPen || {};
-ZenPen.ui = (function () {
+// All things to do with the ui
+PenFlow = window.PenFlow || {};
+PenFlow.ui = (function () {
 
 	// Base elements
 	var body, article, uiContainer, overlay, header;
@@ -27,11 +27,10 @@ ZenPen.ui = (function () {
 
 		wordCountActive = false;
 
-		if (ZenPen.util.supportsHtmlStorage()) {
+		if (PenFlow.util.supportsHtmlStorage()) {
 			loadState();
 		}
 
-		console.log("Checkin under the hood eh? We've probably got a lot in common. You should totally check out ZenPen on github! (https://github.com/tholman/zenpen).");
 	}
 
 	function loadState() {
@@ -58,7 +57,7 @@ ZenPen.ui = (function () {
 
 	function saveState() {
 
-		if (ZenPen.util.supportsHtmlStorage()) {
+		if (PenFlow.util.supportsHtmlStorage()) {
 			localStorage['darkLayout'] = darkLayout;
 			localStorage['wordCount'] = wordCountElement.value;
 		}
@@ -162,7 +161,7 @@ ZenPen.ui = (function () {
 			/* remove tabs and line breaks from header */
 			var headerText = header.innerHTML.replace(/(\t|\n|\r)/gm, "");
 			if (headerText === "") {
-				headerText = "ZenPen";
+				headerText = "PenFlow";
 			}
 			saveAs(blob, headerText + '.txt');
 		} else {
@@ -225,7 +224,7 @@ ZenPen.ui = (function () {
 
 	function updateWordCount() {
 
-		var wordCount = ZenPen.editor.getWordCount();
+		var wordCount = PenFlow.editor.getWordCount();
 		var percentageComplete = wordCount / wordCountValue;
 		wordCounterProgress.style.height = percentageComplete * 100 + '%';
 

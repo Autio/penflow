@@ -1,6 +1,6 @@
 // Utility functions
-ZenPen = window.ZenPen || {};
-ZenPen.util = (function () {
+PenFlow = window.PenFlow || {};
+PenFlow.util = (function () {
 
 	function supportsHtmlStorage() {
 		try {
@@ -25,7 +25,7 @@ ZenPen.util = (function () {
 				}
 			}
 		}
-		return ZenPen.util.trim(ret);
+		return PenFlow.util.trim(ret);
 	};
 
 	function trim(string) {
