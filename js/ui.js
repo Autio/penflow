@@ -14,8 +14,8 @@ PenFlow.ui = (function () {
 	//save support
 	var supportsSave, saveFormat, textToWrite;
 
-	var expandScreenIcon = '&#xe000;';
-	var shrinkScreenIcon = '&#xe004;';
+	var expandScreenIcon = '<svg class="full_screen"></svg>';
+	var shrinkScreenIcon = '<svg class="exit_full_screen"></svg>';
 
 	var darkLayout = false;
 
@@ -46,9 +46,9 @@ PenFlow.ui = (function () {
 		// Activate color switch
 		if (localStorage['darkLayout'] === 'true') {
 			if (darkLayout === false) {
-				document.body.className = 'yang';
+				document.body.className = 'darkmode';
 			} else {
-				document.body.className = 'yin';
+				document.body.className = 'writer';
 			}
 			darkLayout = !darkLayout;
 		}
@@ -134,9 +134,9 @@ PenFlow.ui = (function () {
 
 	function onColorLayoutClick(event) {
 		if (darkLayout === false) {
-			document.body.className = 'yang';
+			document.body.className = 'darkmode';
 		} else {
-			document.body.className = 'yin';
+			document.body.className = 'writer';
 		}
 		darkLayout = !darkLayout;
 

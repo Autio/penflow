@@ -1,0 +1,56 @@
+
+.option_bar_settings {
+    background:url(./icons/option_bar_settings.svg) no-repeat;
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.resize_round {
+    background:url(./icons/resize_round.svg) no-repeat;
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.contrast {
+    background:url(./icons/contrast.svg) no-repeat;
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.arrow_in_down {
+    background:url(./icons/arrow_in_down.svg) no-repeat;
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.focus_center_round {
+    background:url(./icons/focus_center_round.svg) no-repeat;
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.full_screen {
+    background:url(./icons/full_screen.svg) no-repeat;
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.exit_full_screen {
+    background:url(./icons/exit_full_screen.svg) no-repeat;
+    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}e

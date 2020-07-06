@@ -1,21 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <!-- MISC/META -->
+    <!-- Metadata -->
     <title>PenFlow - Minimalist Writing</title>
     <meta charset="utf-8" />
     <meta name="description"
           content="PenFlow - A minimal text editor" />
 
     <!-- CSS -->
-    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic"
           rel="stylesheet"
           type="text/css" />
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/fonts.css" rel="stylesheet" />
+    <link href="css/icons.css" rel="stylesheet" />
+
 </head>
 
-<body class="yin">
+<body class="writer">
     <div class="overlay">
         <div class="wordcount modal">
             <h1>Target Word Count</h1>
@@ -32,7 +34,9 @@
                 <span data-format="pdf">PDF</span>
                 <span data-format="plain">Plain Text</span>
             </p>
-            <button class="savebutton useicons">&#xe006;</button>
+            <button class="savebutton">
+                <svg class="arrow_in_down"></svg>
+            </button>
             <div>
                 Or select format and press ctrl+c (cmd+c on mac) to copy the text.
             </div>
@@ -59,20 +63,24 @@
     <div class="ui">
         <div class="wrapper">
             <div class="top editing">
-                <button class="fullscreen useicons" title="Toggle fullscreen">
-                    &#xe000;
+                <button class="menu" title="Options">
+                    <svg class="option_bar_settings"></svg>
                 </button>
-
-                <button class="color-flip useicons" title="Invert colors">
-                    &#xe002;
+               <button class="fullscreen" title="Fullscreen Toggle">
+                    <svg class="full_screen"></svg>
+                </button>      
+                <button class="color-flip" title="Invert colors">
+                    <svg class="contrast"></svg>
                 </button>
 
                 <button class="target useicons" title="Set target word count">
-                    &#xe001;
+                    <svg class="focus_center_round"></svg>
                 </button>
-                <button class="save useicons" title="Save Text">
-                    &#xe003;
+                <button class="save" title="Save Text">
+          
+                   <svg class="arrow_in_down"></svg>
                 </button>
+                
             </div>
 
             <!-- <div class="bottom">
@@ -107,7 +115,6 @@
     <script type="text/javascript">
         // Initiate PenFlow
         PenFlow.ui.init();
-    
         PenFlow.editor.init();
     </script>
    
