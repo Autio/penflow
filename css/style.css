@@ -1,11 +1,67 @@
 ﻿/*********************************************
- * BASE STYLES
+ * MAIN STYLES
  *********************************************/
 
-* {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+ 
+ :root {
+    font-size:16px;
+    font-family:'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-seconddary:#ececec;
+    --bg-primary: #23232e;
 }
+
+main {
+
+    margin-right: 10rem;
+    padding: 1rem;
+ 
+ }
+ 
+ .navbar { 
+    width: 10rem;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-primary);
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-item:last-child {
+    margin-top: auto;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.nav-link svg
+{
+    min-width: 2rem;
+    margin: 0 1.5rem;
+}
+
+.navbar:hover {
+    width: 14rem;
+}
+ * {
+
+   -moz-box-sizing: border-box;
+    box-sizing: border-box;
+ }
 
     *:focus {
         outline: none;
@@ -36,6 +92,14 @@ body {
     -ms-transition: all 600ms;
     -o-transition: all 600ms;
     transition: all 600ms;
+}
+
+body::-webkit-scrollbar {
+    width:1rem;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #23232e;
 }
 
 section {
@@ -100,9 +164,9 @@ blockquote {
 .ui {
     position: fixed;
     padding: 20px;
-    width: 65px;
+    width: 20px;
     bottom: 0;
-    right: 5px;
+    right: 2rem;
     top: 0;
 }
 
@@ -504,3 +568,9 @@ a {
         display: none;
     }
 }
+
+
+/*********************************************
+ * NAVBAR
+ *********************************************/
+
