@@ -47,8 +47,18 @@ PenFlow.ui = (function () {
 		if (localStorage['darkLayout'] === 'true') {
 			if (darkLayout === false) {
 				document.body.className = 'darkmode';
+				var boxes = document.querySelectorAll("svg.boxbutton");
+				boxes.forEach(function (e) {
+					e.classList.add("darkmode-filter")
+				})
+
 			} else {
 				document.body.className = 'writer';
+				var boxes = document.querySelectorAll("svg.boxbutton");
+				boxes.forEach(function (e) {
+					e.classList.remove("darkmode-filter")
+				})
+
 			}
 			darkLayout = !darkLayout;
 		}
@@ -135,8 +145,17 @@ PenFlow.ui = (function () {
 	function onColorLayoutClick(event) {
 		if (darkLayout === false) {
 			document.body.className = 'darkmode';
+			var boxes = document.querySelectorAll("svg.boxbutton");
+			boxes.forEach(function (e) {
+				e.classList.add("darkmode-filter")
+			})
 		} else {
 			document.body.className = 'writer';
+			var boxes = document.querySelectorAll("svg.boxbutton"); 
+			boxes.forEach(function (e) {
+				e.classList.remove("darkmode-filter")
+			})
+
 		}
 		darkLayout = !darkLayout;
 
@@ -248,7 +267,7 @@ PenFlow.ui = (function () {
 		if (e.target) targ = e.target;
 		else if (e.srcElement) targ = e.srcElement;
 
-		// defeat Safari bug
+		// For Safari bug
 		if (targ.nodeType == 3) {
 			targ = targ.parentNode;
 		}

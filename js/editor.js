@@ -3,31 +3,31 @@
 PenFlow = window.PenFlow || {};
 PenFlow.editor = (function () {
 
-	// Editor elements
-	var headerField, contentField, lastType, currentNodeList, lastSelection;
+	// Components of the editor
+	var headerArea, contentArea, lastType, currentNodeList, lastSelection;
 
-	// Editor Bubble elements
-	var textOptions, optionsBox, boldButton, italicButton, quoteButton, urlButton, urlInput;
+	// Components of the text option box
+	var textOptions, textOptionBox, boldButton, italicButton, quoteButton, urlButton, urlInput;
 
-	var composing;
+	var writing;
 
 	function init() {
 
-		composing = false;
+		writing = false;
 		bindElements();
-
 		createEventBindings();
 
-		// Load state if storage is supported
+		// If storage is supported then load the existing writing
 		if (PenFlow.util.supportsHtmlStorage()) {
 			loadState();
 		} else {
 			loadDefault();
 		}
-		// Set cursor position
+
+		// Set position of cursor
 		var range = document.createRange();
 		var selection = window.getSelection();
-		range.setStart(headerField, 1);
+		range.setStart(headerArea, 1);
 		selection.removeAllRanges();
 		selection.addRange(range);
 
@@ -35,11 +35,12 @@ PenFlow.editor = (function () {
 
 	function createEventBindings() {
 
-		// Key up bindings
+		// Binding the key up
 		if (PenFlow.util.supportsHtmlStorage()) {
 
 			document.onkeyup = function (event) {
 				checkTextHighlighting(event);
+				// Save after each keystroke
 				saveState();
 			}
 
@@ -47,7 +48,7 @@ PenFlow.editor = (function () {
 			document.onkeyup = checkTextHighlighting;
 		}
 
-		// Mouse bindings
+		// Bind mouse buttons
 		document.onmousedown = checkTextHighlighting;
 		document.onmouseup = function (event) {
 
@@ -57,31 +58,26 @@ PenFlow.editor = (function () {
 		};
 
 		// Window bindings
-		window.addEventListener('resize', function (event) {
-			updateBubblePosition();
-		});
-
-
 		document.body.addEventListener('scroll', function () {
-
-			// TODO: Debounce update bubble position to stop excessive redraws
-			updateBubblePosition();
+			updateBoxPosition();
+		});
+		window.addEventListener('resize', function (event) {
+			updateBoxPosition();
 		});
 
-		// Composition bindings. We need them to distinguish
-		// IME composition from text selection
-		document.addEventListener('compositionstart', onCompositionStart);
-		document.addEventListener('compositionend', onCompositionEnd);
+		// Writing bindings to separate writing from text selection
+		document.addEventListener('compositionstart', onWritingStart);
+		document.addEventListener('compositionend', onWritingEnd);
 	}
 
 
 	function bindElements() {
 
-		headerField = document.querySelector('.header');
-		contentField = document.querySelector('.content');
 		textOptions = document.querySelector('.text-options');
+		textOptionBox = textOptions.querySelector('.options');
 
-		optionsBox = textOptions.querySelector('.options');
+		headerArea = document.querySelector('.header');
+		contentArea = document.querySelector('.content');
 
 		boldButton = textOptions.querySelector('.bold');
 		boldButton.onclick = onBoldClick;
@@ -104,13 +100,12 @@ PenFlow.editor = (function () {
 
 		var selection = window.getSelection();
 
-
 		if ((event.target.className === "url-input" ||
 			event.target.classList.contains("url") ||
 			event.target.parentNode.classList.contains("ui-inputs"))) {
 
 			currentNodeList = findNodes(selection.focusNode);
-			updateBubbleStates();
+			updateBoxStates();
 			return;
 		}
 
@@ -120,17 +115,17 @@ PenFlow.editor = (function () {
 			onSelectorBlur();
 		}
 
-		// Text is selected
-		if (selection.isCollapsed === false && composing === false) {
+		// When text is seleceted
+		if (selection.isCollapsed === false && writing  === false) {
 
 			currentNodeList = findNodes(selection.focusNode);
 
 			// Find if highlighting is in the editable area
 			if (hasNode(currentNodeList, "ARTICLE")) {
-				updateBubbleStates();
-				updateBubblePosition();
+				updateBoxStates();
+				updateBoxPosition();
 
-				// Show the ui bubble
+				// Show the text options box
 				textOptions.className = "text-options active";
 			}
 		}
@@ -138,7 +133,7 @@ PenFlow.editor = (function () {
 		lastType = selection.isCollapsed;
 	}
 
-	function updateBubblePosition() {
+	function updateBoxPosition() {
 		var selection = window.getSelection();
 		var range = selection.getRangeAt(0);
 		var boundary = range.getBoundingClientRect();
@@ -147,11 +142,7 @@ PenFlow.editor = (function () {
 		textOptions.style.left = (boundary.left + boundary.right) / 2 + "px";
 	}
 
-	function updateBubbleStates() {
-
-		// It would be possible to use classList here, but I feel that the
-		// browser support isn't quite there, and this functionality doesn't
-		// warrent a shim.
+	function updateBoxStates() {
 
 		if (hasNode(currentNodeList, 'B')) {
 			boldButton.className = "bold active"
@@ -172,9 +163,9 @@ PenFlow.editor = (function () {
 		}
 
 		if (hasNode(currentNodeList, 'A')) {
-			urlButton.className = "url useicons active"
+			urlButton.className = "url active"
 		} else {
-			urlButton.className = "url useicons"
+			urlButton.className = "url"
 		}
 	}
 
@@ -223,32 +214,32 @@ PenFlow.editor = (function () {
 
 	function saveState(event) {
 
-		localStorage['header'] = headerField.innerHTML;
-		localStorage['content'] = contentField.innerHTML;
+		localStorage['header'] = headerArea.innerHTML;
+		localStorage['content'] = contentArea.innerHTML;
 	}
 
 	function loadState() {
 
 		if (localStorage['header']) {
-			headerField.innerHTML = localStorage['header'];
+			headerArea.innerHTML = localStorage['header'];
 		} else {
-			headerField.innerHTML = defaultTitle; // in default.js
+			headerArea.innerHTML = defaultTitle; // in default.js
 		}
 
 		if (localStorage['content']) {
-			contentField.innerHTML = localStorage['content'];
+			contentArea.innerHTML = localStorage['content'];
 		} else {
 			loadDefaultContent()
 		}
 	}
 
 	function loadDefault() {
-		headerField.innerHTML = defaultTitle; // in default.js
+		headerArea.innerHTML = defaultTitle; // in default.js
 		loadDefaultContent();
 	}
 
 	function loadDefaultContent() {
-		contentField.innerHTML = defaultContent; // in default.js
+		contentArea.innerHTML = defaultContent; // in default.js
 	}
 
 	function onBoldClick() {
@@ -263,19 +254,25 @@ PenFlow.editor = (function () {
 
 		var nodeNames = findNodes(window.getSelection().focusNode);
 
+		// Activate quote block
 		if (hasNode(nodeNames, 'BLOCKQUOTE')) {
 			document.execCommand('formatBlock', false, 'p');
-			document.execCommand('outdent');
+			//document.execCommand('outdent', true, null);
+
+
 		} else {
+			// Deactivate quote block
+			//document.execCommand('indent', true, null);
 			document.execCommand('formatBlock', false, 'blockquote');
+
 		}
 	}
 
 	function onUrlClick() {
 
-		if (optionsBox.className == 'options') {
+		if (textOptionBox.className == 'options') {
 
-			optionsBox.className = 'options url-mode';
+			textOptionBox.className = 'options url-mode';
 
 			// Set timeout here to debounce the focus action
 			setTimeout(function () {
@@ -300,7 +297,7 @@ PenFlow.editor = (function () {
 
 		} else {
 
-			optionsBox.className = 'options';
+			textOptionBox.className = 'options';
 		}
 	}
 
@@ -315,12 +312,12 @@ PenFlow.editor = (function () {
 
 	function onUrlInputBlur(event) {
 
-		optionsBox.className = 'options';
+		textOptionBox.className = 'options';
 		applyURL(urlInput.value);
 		urlInput.value = '';
 
 		currentNodeList = findNodes(window.getSelection().focusNode);
-		updateBubbleStates();
+		updateBoxStates();
 	}
 
 	function applyURL(url) {
@@ -352,7 +349,7 @@ PenFlow.editor = (function () {
 
 	function getWordCount() {
 
-		var text = PenFlow.util.getText(contentField);
+		var text = PenFlow.util.getText(contentArea);
 
 		if (text === "") {
 			return 0
@@ -361,12 +358,12 @@ PenFlow.editor = (function () {
 		}
 	}
 
-	function onCompositionStart(event) {
-		composing = true;
+	function onWritingStart(event) {
+		writing = true;
 	}
 
-	function onCompositionEnd(event) {
-		composing = false;
+	function onWritingEnd(event) {
+		writing = false;
 	}
 
 	return {

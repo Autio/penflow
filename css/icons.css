@@ -1,3 +1,4 @@
+/* Source? */ 
 
 .option_bar_settings {
     background:url(./icons/option_bar_settings.svg) no-repeat;
@@ -53,4 +54,37 @@
     width: 20px;
     height: 20px;
     border: none;
-}e
+}
+
+.bold {
+    background: url(./icons/bold.svg) no-repeat;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.italic {
+    background: url(./icons/italic.svg) no-repeat;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.quote-icon {
+    background: url(./icons/quote.svg) no-repeat;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+    margin-left: 3px;
+}
+
+.hyperlink {
+    background: url(./icons/hyperlink.svg) no-repeat;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: none;
+}

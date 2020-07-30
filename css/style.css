@@ -125,9 +125,9 @@ article {
 }
 
 blockquote {
-    border-left: 4px solid deepskyblue;
+    border-left: 4px solid lightgrey;
     margin-left: -19px;
-    padding-left: 15px;
+    padding-left: 45px;
     margin-right: 0;
 }
 
@@ -138,7 +138,7 @@ blockquote {
     width: 100%;
 }
 
-/* Used by the ui bubble to stop wrapping */
+/* Used by the ui box to stop wrapping */
 .lengthen {
     display: block;
     width: 300px;
@@ -216,7 +216,8 @@ a {
 }
 
 .quote {
-    line-height: 60px !important;
+    line-height: 10px !important;
+    padding-left:5px;
     font-size: 49px !important;
 }
 
@@ -386,7 +387,7 @@ a {
 }
 
 /*********************************************
- * UI BUBBLE
+ * UI BOX
  *********************************************/
 
 .text-options {
@@ -524,6 +525,12 @@ a {
     .darkmode .options:before {
         border-top: 5px solid rgba(255,255,255,.9);
     }
+
+/* Colouring SVG icons depending on mode */
+.darkmode-filter {
+    filter: brightness(0) saturate(100%) invert(10%) sepia(6%) saturate(4422%) hue-rotate(251deg) brightness(90%) contrast(84%);
+}
+
 
 .url {
     -webkit-font-smoothing: antialiased;

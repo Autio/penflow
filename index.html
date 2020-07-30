@@ -18,21 +18,21 @@
 </head>
 
 <body class="writer">
-
+    <!--
     <div id = "side-menu" class="side-nav">
         <a href="#">Hellurei</a>
         <a href="#">Onni</a>
         <a href="#">Gideon</a>
-
+        -->
     </div>
     <nav class="navbar">
-        <ul class = "navbar-nav">
-            <a href = "#" class = "nav-link">
+        <ul class="navbar-nav">
+            <a href="#" class="nav-link">
                 <svg>
-                    
+
                 </svg>
             </a>
-            
+
         </ul>
     </nav>
     <div class="overlay">
@@ -65,13 +65,21 @@
         <div class="options">
             <span class="no-overflow">
                 <span class="lengthen ui-inputs">
-                    <button class="url useicons">&#xe005;</button>
+                    <button class="bold">
+                        <svg class="boxbutton bold"></svg>
+                    </button>
+                    <button class="italic">
+                        <svg class="boxbutton italic"></svg>
+                    </button>
+                    <button class="quote">
+                        <svg class="boxbutton quote-icon"></svg>
+                    </button>
+                    <button class="url">
+                        <svg class="boxbutton hyperlink"></svg>
+                    </button>
                     <input class="url-input"
                            type="text"
-                           placeholder="Type or Paste URL here" />
-                    <button class="bold">b</button>
-                    <button class="italic">i</button>
-                    <button class="quote">&rdquo;</button>
+                           placeholder="Enter URL here" />
                 </span>
             </span>
         </div>
@@ -83,9 +91,9 @@
                 <button class="menu" title="Options" onclick="SlideMenu()">
                     <svg class="option_bar_settings"></svg>
                 </button>
-               <button class="fullscreen" title="Fullscreen Toggle">
+                <button class="fullscreen" title="Fullscreen Toggle">
                     <svg class="full_screen"></svg>
-                </button>      
+                </button>
                 <button class="color-flip" title="Invert colors">
                     <svg class="contrast"></svg>
                 </button>
@@ -94,10 +102,10 @@
                     <svg class="focus_center_round"></svg>
                 </button>
                 <button class="save" title="Save Text">
-          
-                   <svg class="arrow_in_down"></svg>
+
+                    <svg class="arrow_in_down"></svg>
                 </button>
-                
+
             </div>
 
             <!-- <div class="bottom">
@@ -134,6 +142,6 @@
         PenFlow.ui.init();
         PenFlow.editor.init();
     </script>
-   
+
 </body>
 </html>
