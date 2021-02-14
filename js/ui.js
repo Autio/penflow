@@ -195,6 +195,7 @@ PenFlow.ui = (function () {
 			document.querySelector('.saveoverlay h1').style.color = '#FC1E1E';
 		}
 		*/
+		plainFormat();
 		var blob = new Blob([textToWrite], { type: "text/plain;charset=utf-8" });
 
 		var headerText = header.innerHTML.replace(/(\t|\n|\r)/gm, "");
@@ -270,6 +271,21 @@ PenFlow.ui = (function () {
 		}
 	}
 
+	function plainFormat(e) {
+
+		saveFormat = "plain";
+
+		var header = document.querySelector('header.header');
+		var headerText = header.innerHTML.replace(/(\r\n|\n|\r)/gm, "") + "\n";
+
+		var body = document.querySelector('article.content');
+		var bodyText = body.innerHTML;
+
+		textToWrite = formatText(saveFormat, headerText, bodyText);
+
+	
+	}
+
 	function selectFormat(e) {
 
 		if (document.querySelectorAll('span.activesave').length > 0) {
@@ -290,7 +306,7 @@ PenFlow.ui = (function () {
 
 		targ.className = 'activesave';
 
-		saveFormat = targ.getAttribute('data-format');
+		saveFormat =  targ.getAttribute('data-format');
 
 		var header = document.querySelector('header.header');
 		var headerText = header.innerHTML.replace(/(\r\n|\n|\r)/gm, "") + "\n";
