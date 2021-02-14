@@ -88,12 +88,15 @@ PenFlow.ui = (function () {
 		screenSizeElement = document.querySelector('.fullscreen');
 		screenSizeElement.onclick = onScreenSizeClick;
 
-		targetElement = document.querySelector('.target ');
-		targetElement.onclick = onTargetClick;
+		
+		//targetElement = document.querySelector('.target ');
+		//targetElement.onclick = onTargetClick;
 
 		//init event listeners only if browser can save
-		if (supportsSave) {
+	
 
+		if (supportsSave) {
+			/* TODO: save formats 
 			saveElement = document.querySelector('.save');
 			saveElement.onclick = onSaveClick;
 
@@ -102,7 +105,9 @@ PenFlow.ui = (function () {
 				formatSelectors[i].onclick = selectFormat;
 			}
 
+			*/
 			document.querySelector('.savebutton').onclick = saveText;
+			
 		} else {
 			document.querySelector('.save.useicons').style.display = "none";
 		}
@@ -175,9 +180,12 @@ PenFlow.ui = (function () {
 
 	function saveText(event) {
 
+		/*
+	
 		if (typeof saveFormat != 'undefined' && saveFormat != '') {
 			var blob = new Blob([textToWrite], { type: "text/plain;charset=utf-8" });
 			/* remove tabs and line breaks from header */
+		/*
 			var headerText = header.innerHTML.replace(/(\t|\n|\r)/gm, "");
 			if (headerText === "") {
 				headerText = "PenFlow";
@@ -186,6 +194,14 @@ PenFlow.ui = (function () {
 		} else {
 			document.querySelector('.saveoverlay h1').style.color = '#FC1E1E';
 		}
+		*/
+		var blob = new Blob([textToWrite], { type: "text/plain;charset=utf-8" });
+
+		var headerText = header.innerHTML.replace(/(\t|\n|\r)/gm, "");
+		if (headerText === "") {
+			headerText = "PenFlow";
+		}
+		saveAs(blob, headerText + '.txt');
 	}
 
 	/* Allows the user to press enter to tab from the title */
